@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "187083173456",
+    "project_id": "talknest-d8330",
+    "storage_bucket": "talknest-d8330.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187083173456:android:4374e3ff738f471fcdeb55",
+        "android_client_info": {
+          "package_name": "com.saad.talknest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABQXCd4mIVU2Lci9hyjBGG87-LheMW_8c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
