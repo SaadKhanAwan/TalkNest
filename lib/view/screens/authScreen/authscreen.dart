@@ -176,9 +176,16 @@ class _AuthscreenState extends State<Authscreen> {
       return Column(
         children: [
           ResponsiveSizes.verticalSizebox(context, .03),
-          const CustomTextField(
+          CustomTextField(
             hintText: "Full Name",
             prefixIcon: Icons.person,
+            controller: provider.nameController,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "Please enter email";
+              }
+              return null;
+            },
           ),
           ResponsiveSizes.verticalSizebox(context, .03),
           CustomTextField(

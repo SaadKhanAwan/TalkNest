@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:talknest/config/images.dart';
+import 'package:talknest/models/appuser.dart';
 import 'package:talknest/responsiveness/sizes.dart';
 import 'package:talknest/utils/routes/export_file.dart';
+import 'package:talknest/viewmodel/services/firebaseservices/firebase_apis.dart';
 
 class UserChatScreen extends StatefulWidget {
-  const UserChatScreen({super.key});
+  final AppUser user;
+  const UserChatScreen({super.key, required this.user});
 
   @override
   State<UserChatScreen> createState() => _UserChatScreenState();
@@ -51,7 +54,7 @@ class _UserChatScreenState extends State<UserChatScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, RouteNames.profileScreen);
+                    Navigator.pushNamed(context, RouteNames.userprofileScreen);
                   },
                   child: Image.asset(
                     MyImages.boyPic,
@@ -189,7 +192,9 @@ class _UserChatScreenState extends State<UserChatScreen> {
                     icon: const Icon(Icons.send),
                     onPressed: () {
                       if (_controller.text.isNotEmpty) {
-                        // Handle sending the message
+                        FirebaseApi().sendMessage(
+                            messageText: _controller.text,
+                            targetUserId: widget.user.id);
                       }
                     },
                   ),

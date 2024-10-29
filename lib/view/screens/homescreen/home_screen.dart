@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:talknest/config/images.dart';
 import 'package:talknest/responsiveness/sizes.dart';
+import 'package:talknest/utils/routes/export_file.dart';
 import 'package:talknest/viewmodel/controller/homescreen/home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,10 +23,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             child: Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
-            leading: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SvgPicture.asset(
-                MyImages.appicon,
+            leading: InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const Profilescreen()));
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SvgPicture.asset(
+                  MyImages.appicon,
+                ),
               ),
             ),
             title: Text(
@@ -39,9 +46,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
               ResponsiveSizes.horizentalSizebox(context, .03),
               InkWell(
-                onTap: () async {
-                  await context.read<HomeController>().logout(context: context);
-                },
+                onTap: () async {},
                 child: const Icon(
                   Icons.more_vert,
                   size: 30,
@@ -65,6 +70,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         ))
                     .toList(),
               ),
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.pushNamed(context, RouteNames.contactScreen);
+            },
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            child: const Icon(
+              Icons.add,
+              color: Colors.white,
+              size: 40,
             ),
           ),
           body: TabBarView(

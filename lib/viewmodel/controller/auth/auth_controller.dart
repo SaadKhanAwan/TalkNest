@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:talknest/helper/baseviewmodel/baseviewmodel.dart';
@@ -11,6 +10,8 @@ class AuthController extends BaseViewModel {
   final FirebaseApi _services = FirebaseApi();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   bool isLogin = true;
@@ -58,10 +59,13 @@ class AuthController extends BaseViewModel {
       email: emailController.text,
       password: passwordController.text,
     )
-        .then((value) {
+        .then((value) async {
       if (value == "successfully") {
+        await _services.createUser(
+            email: emailController.text, name: nameController.text);
         emailController.clear();
         passwordController.clear();
+        nameController.clear;
         setstate(ViewState.success);
 
         Dilogues.showSnackbar(context, message: "SingUp successfully.");
@@ -73,5 +77,11 @@ class AuthController extends BaseViewModel {
     log("Result: $result");
   }
 
- 
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
+    super.dispose();
+  }
 }
