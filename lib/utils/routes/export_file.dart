@@ -7,3 +7,8 @@ export 'package:talknest/view/screens/splashscreen/splash_screen.dart';
 export 'package:talknest/view/screens/userprofilescreen/userprofilescreen.dart';
 export 'package:talknest/view/screens/authScreen/profilescreen/profilescreen.dart';
 export 'package:talknest/view/screens/contactscreen/contact_screen.dart';
+export 'package:flutter/material.dart';
+export 'package:talknest/models/appuser.dart';
+export 'package:talknest/view/screens/homescreen/pages/groupscreens/grouplist_screen.dart';
+export 'package:talknest/view/screens/homescreen/pages/groupscreens/groupchat_screen.dart';
+export 'package:talknest/view/screens/homescreen/pages/groupscreens/groups.dart';

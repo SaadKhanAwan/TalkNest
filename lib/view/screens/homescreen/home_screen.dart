@@ -5,6 +5,7 @@ import 'package:talknest/config/images.dart';
 import 'package:talknest/responsiveness/sizes.dart';
 import 'package:talknest/utils/routes/export_file.dart';
 import 'package:talknest/viewmodel/controller/homescreen/home_controller.dart';
+import 'package:talknest/viewmodel/services/firebaseservices/firebase_apis.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,6 +15,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+  @override
+  void initState() {
+    super.initState();
+    FirebaseApi().listenForIncomingCalls(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(

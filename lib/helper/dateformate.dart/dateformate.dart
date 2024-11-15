@@ -19,4 +19,18 @@ class Dateformate {
       return '$years years ago';
     }
   }
+
+  static String formatToHourMinute(DateTime dateTime) {
+    int hour = dateTime.hour;
+    int minute = dateTime.minute;
+    String period = hour >= 12 ? 'PM' : 'AM';
+
+    // Convert to 12-hour format
+    hour = hour % 12;
+    hour = hour == 0 ? 12 : hour;
+
+    String minuteStr = minute.toString().padLeft(2, '0');
+
+    return '$hour:$minuteStr $period';
+  }
 }

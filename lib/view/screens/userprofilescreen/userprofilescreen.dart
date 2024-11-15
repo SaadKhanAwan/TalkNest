@@ -1,8 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:talknest/config/images.dart';
+import 'package:talknest/models/appuser.dart';
 
 class UserProfileScreen extends StatelessWidget {
-  const UserProfileScreen({super.key});
+  final AppUser user;
+  const UserProfileScreen({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -41,22 +44,26 @@ class UserProfileScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    MyImages.boyPic,
-                    height: 80,
-                  ),
+                  user.profileImage.isNotEmpty
+                      ? CircleAvatar(
+                          radius: 70,
+                          backgroundImage:
+                              CachedNetworkImageProvider(user.profileImage),
+                        )
+                      : CircleAvatar(
+                          radius: 70, child: Image.asset(MyImages.boyPic)),
                   const SizedBox(
                     height: 5,
                   ),
                   Text(
-                    "Saad@gmail.com",
+                    user.email,
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   const SizedBox(
                     height: 2,
                   ),
                   Text(
-                    "Saad Awan",
+                    user.name,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(

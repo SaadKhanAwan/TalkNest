@@ -14,4 +14,10 @@ class RouteNames {
   static const String profileScreen = "profile_Screen";
 
   static const String contactScreen = "contact_Screen";
+
+  static const String groupcreationScreen = "groupcreation_Screen";
+
+  static const String groupScreen = "group_Screen";
+
+  static const String groupchatScreen = "groupChat_Screen";
 }

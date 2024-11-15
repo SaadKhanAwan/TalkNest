@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:talknest/models/appuser.dart';
+import 'package:talknest/models/group.dart';
+import 'package:talknest/models/group_message.dart';
 import 'package:talknest/utils/routes/export_file.dart';
 
 class Routes {
@@ -21,11 +21,25 @@ class Routes {
       case RouteNames.splashScreen:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case RouteNames.userprofileScreen:
-        return MaterialPageRoute(builder: (_) => const UserProfileScreen());
+        final AppUser user = settings.arguments as AppUser;
+        return MaterialPageRoute(
+            builder: (_) => UserProfileScreen(
+                  user: user,
+                ));
       case RouteNames.profileScreen:
         return MaterialPageRoute(builder: (_) => const Profilescreen());
       case RouteNames.contactScreen:
         return MaterialPageRoute(builder: (_) => const ContactScreen());
+      case RouteNames.groupcreationScreen:
+        return MaterialPageRoute(builder: (_) => const GroupCreationScreen());
+      case RouteNames.groupScreen:
+        return MaterialPageRoute(builder: (_) => const GroupScreen());
+      case RouteNames.groupchatScreen:
+        final Group group = settings.arguments as Group;
+        return MaterialPageRoute(
+            builder: (_) => GroupChatScreen(
+                  group: group,
+                ));
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(

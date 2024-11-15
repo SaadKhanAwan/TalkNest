@@ -8,7 +8,7 @@ class AppUser {
   final String about;
   final DateTime createdAt;
   final DateTime lastOnline;
-  final String status;
+  final bool status;
 
   AppUser({
     required this.id,
@@ -30,7 +30,7 @@ class AppUser {
       about: data['about'] ?? '',
       createdAt: (data['created_At'] as Timestamp).toDate(),
       lastOnline: (data['last_online'] as Timestamp).toDate(),
-      status: data['status'] ?? '',
+      status: data['status'] ?? false,
     );
   }
 

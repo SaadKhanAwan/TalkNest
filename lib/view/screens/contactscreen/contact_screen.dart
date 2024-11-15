@@ -6,6 +6,7 @@ import 'package:talknest/helper/baseviewmodel/baseviewmodel.dart';
 import 'package:talknest/models/appuser.dart';
 import 'package:talknest/responsiveness/sizes.dart';
 import 'package:talknest/utils/routes/export_file.dart';
+import 'package:talknest/view/screens/homescreen/pages/groupscreens/grouplist_screen.dart';
 import 'package:talknest/view/widgets/usercard.dart';
 import 'package:talknest/view/widgets/usercontainershimmer.dart';
 import 'package:talknest/viewmodel/controller/contact_controller/cotact_controller.dart';
@@ -64,9 +65,19 @@ class _ContactScreenState extends State<ContactScreen> {
                   Column(
                     children: [
                       ResponsiveSizes.verticalSizebox(context, .01),
-                      buildRow(icon: Icons.person_add, name: 'New Contact'),
+                      buildRow(
+                        icon: Icons.person_add,
+                        name: 'New Contact',
+                        onTap: () {},
+                      ),
                       ResponsiveSizes.verticalSizebox(context, .01),
-                      buildRow(icon: Icons.group, name: 'Create Group'),
+                      buildRow(
+                          icon: Icons.group,
+                          name: 'Create Group',
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RouteNames.groupcreationScreen);
+                          }),
                     ],
                   ),
                   const Padding(
@@ -138,29 +149,32 @@ class _ContactScreenState extends State<ContactScreen> {
     );
   }
 
-  buildRow({icon, name}) {
-    return Container(
-      margin: EdgeInsets.symmetric(
-          horizontal: ResponsiveSizes.width(context, .04), vertical: 5),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onPrimaryContainer,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      padding: EdgeInsets.symmetric(
-          horizontal: ResponsiveSizes.width(context, .01), vertical: 5),
-      child: ListTile(
-        leading: CircleAvatar(
-            backgroundColor: Colors.blue,
-            child: Icon(
-              icon,
-              color: Colors.white,
-            )),
-        title: Text(name,
-            style: const TextStyle(
-                fontSize: 16,
+  buildRow({icon, name, Function()? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        margin: EdgeInsets.symmetric(
+            horizontal: ResponsiveSizes.width(context, .04), vertical: 5),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.onPrimaryContainer,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        padding: EdgeInsets.symmetric(
+            horizontal: ResponsiveSizes.width(context, .01), vertical: 5),
+        child: ListTile(
+          leading: CircleAvatar(
+              backgroundColor: Colors.blue,
+              child: Icon(
+                icon,
                 color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontFamily: "Poppins")),
+              )),
+          title: Text(name,
+              style: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: "Poppins")),
+        ),
       ),
     );
   }
